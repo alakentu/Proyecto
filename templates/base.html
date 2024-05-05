@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="h-100" lang="es" data-bs-theme="light">
+
+<head>
+    <!-- Meta etiquetas, archivos css, iconos y otros -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/gmdatetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename= 'images/logo_120.jpg') }}" sizes="120x120">
+    <link rel="icon" href="{{ url_for('static', filename= 'images/icono_32.png') }}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{{ url_for('static', filename= 'images/favicon.ico') }}">
+</head>
+
+<body class="d-flex flex-column h-100">
+    <!-- Barra de navegación -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" data-bs-theme="dark">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('index')}}"><img
+                        src="{{ url_for('static', filename= 'images/logo_white.svg') }}" width="100"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-shrink-0">
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" id="message" role="alert">
+                <div>{{ message }}</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block content %} {% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer fixed-bottom mt-auto py-3 text-bg-primary text-center">
+        <div class="container">
+            <span class="text-white">&copy; 2024 - UNEXCA</span>
+    </footer>
+    <!-- JavaScript Bootstrap Bundle con Popper -->
+    <script src="{{ url_for('static', filename= 'js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename= 'js/jquery.min.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename= 'js/moment.min.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename= 'js/gmdatetimepicker.min.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename= 'js/scripts.js') }}" crossorigin="anonymous"></script>
+</body>
+
+</html>

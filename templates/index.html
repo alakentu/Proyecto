@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="text-center mb-0">{% block title %}Bienvenidos al generador de Constancias de Estudio<br>UNEXCA{% endblock %}
+</h3>
+
+<div class="container pt-4 pt-10">
+    <form method="post" name="record_generator" action="/">
+        <div class="row g-3">
+            <div class="col-4">
+                <label for="inputNames" class="form-label">Nombres</label>
+                <input type="text" name="names" id="inputNames" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="violet-tooltip" data-bs-title="Ingrese los nombres"
+                    class="form-control form-control-sm" value="{{ request.form['names'] }}"></input>
+            </div>
+            <div class="col-4">
+                <label for="inputLastNames" class="form-label">Apellidos</label>
+                <input type="text" name="lastnames" id="inputLastNames" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="violet-tooltip" data-bs-title="Ingrese los apellidos"
+                    class="form-control form-control-sm" value="{{ request.form['lastnames'] }}"></input>
+            </div>
+            <div class="col-4">
+                <label for="inputCdi" class="form-label">Cédula</label>
+                <input type="text" name="cdi" id="inputCdi" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="violet-tooltip" data-bs-title="Ingrese el número de cédula"
+                    class="form-control form-control-sm" value="{{ request.form['cdi'] }}"></input>
+            </div>
+            <div class="col-3">
+                <label for="inputNat" class="form-label">Nacionalidad</label>
+                <select id="inputPnf" name="nationality" class="form-select" data-bs-toggle="tooltip"
+                    data-bs-placement="top" data-bs-custom-class="violet-tooltip"
+                    data-bs-title="Elija la nacionalidad del/la estudiante">
+                    {% for key, value in nationalities.items() %}
+                    <option value="{{ key }}" {% if key==selected_nat %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="inputPnf" class="form-label">Programa (PNF)</label>
+                <select id="inputPnf" name="pnfs" class="form-select" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="violet-tooltip" data-bs-title="Elija el PNF del/la estudiante">
+                    {% for key, value in pnfs.items() %}
+                    <option value="{{ key }}" {% if key==selected_pnfs %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="inputTurns" class="form-label">Turno</label>
+                <select id="inputTurns" name="turns" class="form-select" data-bs-toggle="tooltip"
+                    data-bs-placement="top" data-bs-custom-class="violet-tooltip"
+                    data-bs-title="Elija el turno del/la estudiante">
+                    {% for key, value in turns.items() %}
+                    <option value="{{ key }}" {% if key==selected_turns %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="inputCores" class="form-label">Núcleo</label>
+                <select id="inputCores" name="cores" class="form-select" data-bs-toggle="tooltip"
+                    data-bs-placement="top" data-bs-custom-class="violet-tooltip"
+                    data-bs-title="Elija el núcleo del/la estudiante">
+                    {% for key, value in cores.items() %}
+                    <option value="{{ key }}" {% if key==selected_cores %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="inputDateInit" class="form-label">Fecha de Inicio</label>
+                <input type="text" name="date_init" id="inputDateInit" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="violet-tooltip" data-bs-title="Ingrese la fecha de inicio del trayecto"
+                    class="form-control form-control-sm" value="{{ request.form['date_init'] }}"></input>
+            </div>
+            <div class="col-4">
+                <label for="inputDateEnd" class="form-label">Fecha Final</label>
+                <input type="text" name="date_end" id="inputDateEnd" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="violet-tooltip" data-bs-title="Ingrese la fecha de fin del trayecto"
+                    class="form-control form-control-sm" value="{{ request.form['date_end'] }}"></input>
+            </div>
+            <div class="col-4">
+                <label for="inputSection" class="form-label">Sección</label>
+                <input type="text" name="section" id="inputSection" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="violet-tooltip" data-bs-title="Ingrese la sección"
+                    class="form-control form-control-sm" value="{{ request.form['section'] }}"></input>
+            </div>
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-primary btn-sm float-end">Imprimir Constancia</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
